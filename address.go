@@ -196,7 +196,7 @@ func (p *PaloAlto) CreateAddress(name, addrtype, address, description string, sh
 	if errs != nil {
 		return errs[0]
 	} else {
-		fmt.Println(resp)
+		fmt.Println("\n",resp)
 	}
 
 	if err := xml.Unmarshal([]byte(resp), &reqError); err != nil {
