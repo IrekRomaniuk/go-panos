@@ -190,13 +190,13 @@ func (p *PaloAlto) CreateAddress(name, addrtype, address, description string, sh
 	if p.DeviceType == "panorama" && shared == false && len(devicegroup) <= 0 {
 		return errors.New("you must specify a device-group when creating address objects on a Panorama device")
 	}
-	fmt.Println(p.URI)
+	fmt.Printf("%s",p.URI)
 	fmt.Printf("type=config&action=set&xpath=%s&element=%s&key=%s", xpath, xmlBody, p.Key)
 	_, resp, errs := r.Post(p.URI).Query(fmt.Sprintf("type=config&action=set&xpath=%s&element=%s&key=%s", xpath, xmlBody, p.Key)).End()
 	if errs != nil {
 		return errs[0]
 	} else {
-		fmt.Println("\n",resp)
+		fmt.Printf("%s\n",resp)
 	}
 
 	if err := xml.Unmarshal([]byte(resp), &reqError); err != nil {
